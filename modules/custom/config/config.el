@@ -1,12 +1,17 @@
 ;;; custom/config/config.el -*- lexical-binding: t; -*-
 
+;; Switch workspace when switching projects
+(setq +workspaces-on-switch-project-behavior t)
+
 ;; Make M-x harder to miss
 (define-key! 'override
   "M-s" #'save-buffer
   "M-e" #'+treemacs/toggle
   "M-c" #'clipboard-kill-ring-save
   "M-v" #'clipboard-yank
-  "M-a" #'mark-whole-buffer)
+  "M-a" #'mark-whole-buffer
+  "M-r" #'counsel-imenu)
+
 (map!
  :gnvime "C-h" #'evil-window-left
  :gnvime "C-j" #'evil-window-down
@@ -27,6 +32,15 @@
 
 (map! :leader
       :desc "Switch to alt buffer" "TAB" #'evil-switch-to-windows-last-buffer
+      :desc "Switch to workspace 1"  :n  "1"   #'(lambda () (interactive) (+workspace/switch-to 0))
+      :desc "Switch to workspace 2"  :n  "2"   #'(lambda () (interactive) (+workspace/switch-to 1))
+      :desc "Switch to workspace 3"  :n  "3"   #'(lambda () (interactive) (+workspace/switch-to 2))
+      :desc "Switch to workspace 4"  :n  "4"   #'(lambda () (interactive) (+workspace/switch-to 3))
+      :desc "Switch to workspace 5"  :n  "5"   #'(lambda () (interactive) (+workspace/switch-to 4))
+      :desc "Switch to workspace 6"  :n  "6"   #'(lambda () (interactive) (+workspace/switch-to 5))
+      :desc "Switch to workspace 7"  :n  "7"   #'(lambda () (interactive) (+workspace/switch-to 6))
+      :desc "Switch to workspace 8"  :n  "8"   #'(lambda () (interactive) (+workspace/switch-to 7))
+      :desc "Switch to workspace 9"  :n  "9"   #'(lambda () (interactive) (+workspace/switch-to 8))
       ;;; <leader> l --- workspace
       (:when (featurep! :ui workspaces)
        (:prefix-map ("l" . "workspace")
