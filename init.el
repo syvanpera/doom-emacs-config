@@ -101,7 +101,7 @@
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        ;;pdf               ; pdf enhancements
-       ;;prodigy           ; FIXME managing external services & code builders
+       prodigy           ; FIXME managing external services & code builders
        ;;rgb               ; creating color strings
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
@@ -131,7 +131,7 @@
        ;;idris             ;
        json              ; At least it ain't XML
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        ;;latex             ; writing papers in Emacs has never been so fun
@@ -143,12 +143,13 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       org               ; organize your plain life in plain text
+       (org               ; organize your plain life in plain text
+        +hugo)            ; and write a blog about it
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       ;;python            ; beautiful is better than ugly
+       python            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;rest              ; Emacs as a REST client
@@ -173,7 +174,7 @@
        :app
        ;;calendar
        ;;irc               ; how neckbeards socialize
-       ;;(rss +org)        ; emacs as an RSS reader
+       (rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
 
        :config
@@ -183,4 +184,5 @@
        :custom
        config
        ui
-       org)
+       org
+       email)

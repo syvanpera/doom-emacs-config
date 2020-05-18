@@ -1,7 +1,20 @@
 ;;; custom/config/config.el -*- lexical-binding: t; -*-
 
+(load! "+funcs")
+
+;; Don't save selections on system clipboard
+(setq select-enable-clipboard nil
+      save-interprogram-paste-before-kill t)
+
+;; Week starts from Monday
+(setq calendar-week-start-day 1)
+
 ;; Switch workspace when switching projects
 (setq +workspaces-on-switch-project-behavior t)
+
+;; Don't allow scratch and messages buffers to be killed
+(with-current-buffer "*scratch*"  (emacs-lock-mode 'kill))
+(with-current-buffer "*Messages*" (emacs-lock-mode 'kill))
 
 ;; Make M-x harder to miss
 (define-key! 'override
@@ -65,14 +78,36 @@
         :desc "Switch to 7th workspace"   "7"   #'+workspace/switch-to-6
         :desc "Switch to 8th workspace"   "8"   #'+workspace/switch-to-7
         :desc "Switch to 9th workspace"   "9"   #'+workspace/switch-to-8
-        :desc "Switch to final workspace" "0"   #'+workspace/switch-to-final)))
+        :desc "Switch to final workspace" "0"   #'+workspace/switch-to-final))
+
+      (:prefix ("a" . "applications")
+       :desc "Feeds"                :n  "f" #'elfeed
+       :desc "Email"                :n  "m" #'mu4e
+       :desc "Prodigy"              :n  "p" #'prodigy)
+      (:prefix ("f" . "file")
+       (:prefix ("o" . "open")
+        :desc "Open org folder"     :n  "o" #'(lambda () (interactive)
+                                                (counsel-find-file org-directory))
+        :desc "Open org inbox"      :n  "i" #'(lambda () (interactive)
+                                                (find-file (concat org-directory +org-capture-todo-file)))
+
+        ))
+      (:prefix ("e" . "errors")
+       :desc "List errors"          :n  "l" #'flycheck-list-errors
+       :desc "Next error"           :n  "n" #'flycheck-next-error
+       :desc "Previous error"       :n  "p" #'flycheck-previous-error)
+      (:prefix ("t" . "toggle")
+       :desc "Search highlight"     :n  "h" #'evil-ex-nohighlight)
+      )
 
 (after! org
   (map!
    (:prefix "C-c"
-    :gnvime "l" #'org-store-link
-    :gnvime "a" #'org-agenda
-    :gnvime "c" #'org-caputre)))
+    :gnvime "l"   #'org-store-link
+    :gnvime "C-l" #'org-insert-link
+
+    :gnvime "a"   #'org-agenda
+    :gnvime "c"   #'org-capture)))
 
 (after! deft
   (setq deft-directory "~/org/notes"
@@ -91,3 +126,16 @@
           :i    "C-r" #'+eshell/search-history))
 
   (add-hook! 'eshell-first-time-mode-hook #'ts/init-eshell-keymap))
+
+(after! prodigy
+  (prodigy-define-service
+    :name "Hugo Personal Blog"
+    :command "/usr/bin/hugo"
+    :args '("server" "-D" "--navigateToChanged")
+    :cwd "~/projects/personal/tiniblog"
+    :tags '(personal)
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t))
+
+(after! elfeed-org
+  (setq rmh-elfeed-org-files (list (concat org-directory "elfeed.org"))))
