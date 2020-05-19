@@ -141,3 +141,8 @@
 
 (after! elfeed-org
   (setq rmh-elfeed-org-files (list (concat org-directory "elfeed.org"))))
+
+(after! elfeed
+  (setq elfeed-search-title-max-width 120)
+  (map! :map elfeed-search-mode-map
+        :ne "U" #'elfeed-update))
