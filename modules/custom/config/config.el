@@ -1,6 +1,10 @@
 ;;; custom/config/config.el -*- lexical-binding: t; -*-
 
+(load! "elisp/protobuf-mode")
+
 (load! "+funcs")
+
+(add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 
 ;; Don't save selections on system clipboard
 (setq select-enable-clipboard nil
