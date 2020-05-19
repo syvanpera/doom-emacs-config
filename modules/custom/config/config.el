@@ -29,11 +29,18 @@
   "M-a" #'mark-whole-buffer
   "M-r" #'counsel-imenu)
 
+
 (map!
  :gnvime "C-h" #'evil-window-left
  :gnvime "C-j" #'evil-window-down
  :gnvime "C-k" #'evil-window-up
- :gnvime "C-l" #'evil-window-right)
+ :gnvime "C-l" #'evil-window-right
+ (:prefix "C-c"
+  :gnvime "l"   #'org-store-link
+  :gnvime "C-l" #'org-insert-link
+
+  :gnvime "a"   #'org-agenda
+  :gnvime "c"   #'org-capture))
 
 ;; window management (prefix "C-w")
 (map!
@@ -103,15 +110,6 @@
       (:prefix ("t" . "toggle")
        :desc "Search highlight"     :n  "h" #'evil-ex-nohighlight)
       )
-
-(after! org
-  (map!
-   (:prefix "C-c"
-    :gnvime "l"   #'org-store-link
-    :gnvime "C-l" #'org-insert-link
-
-    :gnvime "a"   #'org-agenda
-    :gnvime "c"   #'org-capture)))
 
 (after! deft
   (setq deft-directory "~/org/notes"
