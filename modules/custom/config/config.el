@@ -20,21 +20,24 @@
 (with-current-buffer "*scratch*"  (emacs-lock-mode 'kill))
 (with-current-buffer "*Messages*" (emacs-lock-mode 'kill))
 
-;; Make M-x harder to miss
 (define-key! 'override
   "M-s" #'save-buffer
   "M-e" #'+treemacs/toggle
   "M-c" #'clipboard-kill-ring-save
   "M-v" #'clipboard-yank
   "M-a" #'mark-whole-buffer
-  "M-r" #'counsel-imenu)
-
+  "M-r" #'counsel-imenu
+  "M-f" #'counsel-grep-or-swiper
+  "M-F" #'+default/search-project
+  "M-p" #'counsel-M-x)
 
 (map!
  :gnvime "C-h" #'evil-window-left
  :gnvime "C-j" #'evil-window-down
  :gnvime "C-k" #'evil-window-up
  :gnvime "C-l" #'evil-window-right
+
+ :nv     "go"  #'browse-url
  (:prefix "C-c"
   :gnvime "l"   #'org-store-link
   :gnvime "C-l" #'org-insert-link
@@ -55,7 +58,7 @@
  :i "C-l" #'evil-window-right)
 
 (map! :leader
-      :desc "Switch to alt buffer" "TAB" #'evil-switch-to-windows-last-buffer
+      :desc "Toggle buffers" "TAB" #'evil-switch-to-windows-last-buffer
       :desc "Switch to workspace 1"  :n  "1"   #'(lambda () (interactive) (+workspace/switch-to 0))
       :desc "Switch to workspace 2"  :n  "2"   #'(lambda () (interactive) (+workspace/switch-to 1))
       :desc "Switch to workspace 3"  :n  "3"   #'(lambda () (interactive) (+workspace/switch-to 2))
@@ -92,7 +95,7 @@
         :desc "Switch to final workspace" "0"   #'+workspace/switch-to-final))
 
       (:prefix ("a" . "applications")
-       :desc "Feeds"                :n  "f" #'elfeed
+       :desc "News feeds"           :n  "n" #'elfeed
        :desc "Email"                :n  "m" #'mu4e
        :desc "Prodigy"              :n  "p" #'prodigy)
       (:prefix ("f" . "file")
@@ -109,6 +112,8 @@
        :desc "Previous error"       :n  "p" #'flycheck-previous-error)
       (:prefix ("t" . "toggle")
        :desc "Search highlight"     :n  "h" #'evil-ex-nohighlight)
+      (:prefix ("b" . "buffer")
+       :desc "Open messages buffer" :n  "m" #'ts/switch-to-messages-buffer)
       )
 
 (after! deft
