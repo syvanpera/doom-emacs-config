@@ -34,8 +34,8 @@
 
         mu4e-org-link-query-in-headers-mode nil
 
-        mu4e-maildir-shortcuts '(("/gmail/INBOX"               . ?g)
-                                 ("/houston/INBOX"             . ?h))
+        ;; mu4e-maildir-shortcuts '(("/gmail/INBOX"               . ?g)
+        ;;                          ("/houston/INBOX"             . ?h))
 
         mu4e-bookmarks '(("flag:unread" "Unread messages" ?u)
                          ("date:today..now" "Today's messages" ?t)
@@ -74,10 +74,10 @@
             :vars '(
                     (user-mail-address  . "tuomo.syvanpera@gmail.com")
                     (user-full-name     . "Tuomo Syvänperä")
-                    (mu4e-drafts-folder . "/gmail/[Gmail].Drafts")
-                    (mu4e-sent-folder   . "/gmail/[Gmail].Sent Mail")
-                    (mu4e-trash-folder  . "/gmail/[Gmail].Trash")
-                    (mu4e-refile-folder . "/gmail/[Gmail].All Mail")))
+                    (mu4e-drafts-folder . "/tuomo.syvanpera@gmail.com/[Gmail].Drafts")
+                    (mu4e-sent-folder   . "/tuomo.syvanpera@gmail.com/[Gmail].Sent Mail")
+                    (mu4e-trash-folder  . "/tuomo.syvanpera@gmail.com/[Gmail].Trash")
+                    (mu4e-refile-folder . "/tuomo.syvanpera@gmail.com/[Gmail].All Mail")))
           ,(make-mu4e-context
             :name "houston"
             :enter-func (lambda () (mu4e-message "Entering Houston context"))
@@ -95,9 +95,9 @@
                     (user-mail-address  . "tuomo.syvanpera@houston-inc.com")
                     (user-full-name     . "Tuomo Syvänperä")
                     (mu4e-compose-signature . "Tuomo Syvänperä\nSenior Consultant\nHouston Inc.\nKonepajankuja 1, 00510 Helsinki\nwww.houston-inc.com")
-                    (mu4e-drafts-folder . "/houston/[Gmail].Drafts")
-                    (mu4e-sent-folder   . "/houston/[Gmail].Sent Mail")
-                    (mu4e-trash-folder  . "/houston/[Gmail].Trash")
-                    (mu4e-refile-folder . "/houston/[Gmail].All Mail")))))
+                    (mu4e-drafts-folder . "/tuomo.syvanpera@houston-inc.com/[Gmail].Drafts")
+                    (mu4e-sent-folder   . "/tuomo.syvanpera@houston-inc.com/[Gmail].Sent Mail")
+                    (mu4e-trash-folder  . "/tuomo.syvanpera@houston-inc.com/[Gmail].Trash")
+                    (mu4e-refile-folder . "/tuomo.syvanpera@houston-inc.com/[Gmail].All Mail")))))
   ;; (add-hook 'message-send-mail-hook 'choose-msmtp-account))
   )
