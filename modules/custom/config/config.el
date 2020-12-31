@@ -151,3 +151,7 @@
   (setq elfeed-search-title-max-width 120)
   (map! :map elfeed-search-mode-map
         :ne "U" #'elfeed-update))
+
+(use-package! tmux-pane
+  :init
+  (tmux-pane-mode))
