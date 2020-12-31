@@ -1,6 +1,7 @@
 ;;; custom/config/config.el -*- lexical-binding: t; -*-
 
 (load! "elisp/protobuf-mode")
+(load! "elisp/tmux")
 
 (load! "+funcs")
 
@@ -32,10 +33,10 @@
   "M-p" #'counsel-M-x)
 
 (map!
- :gnvime "C-h" #'evil-window-left
- :gnvime "C-j" #'evil-window-down
- :gnvime "C-k" #'evil-window-up
- :gnvime "C-l" #'evil-window-right
+ :gnvime "C-h" #'tmux-window-left
+ :gnvime "C-j" #'tmux-window-down
+ :gnvime "C-k" #'tmux-window-up
+ :gnvime "C-l" #'tmux-window-right
 
  :nv     "go"  #'browse-url
  (:prefix "C-c"
@@ -151,7 +152,3 @@
   (setq elfeed-search-title-max-width 120)
   (map! :map elfeed-search-mode-map
         :ne "U" #'elfeed-update))
-
-(use-package! tmux-pane
-  :init
-  (tmux-pane-mode))
