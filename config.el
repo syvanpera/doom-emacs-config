@@ -22,18 +22,19 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
-(setq doom-font (font-spec :family "monospace" :size 12))
+(setq doom-font (font-spec :family "monospace" :size 14))
 (setq doom-variable-pitch-font (font-spec :family "sans"))
 ;; (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 12))
 
-;; (setq fancy-splash-image "~/.doom.d/nebula.png")
-(setq fancy-splash-image "~/.doom.d/black-hole.png")
+;; (setq fancy-splash-image (concat doom-private-dir "nebula.png"))
+(setq fancy-splash-image (concat doom-private-dir "black-hole.png"))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-nebula)
-(setq doom-theme 'doom-custom)
+(setq doom-theme 'doom-one-custom)
+;; (setq doom-theme 'doom-one-custom)
 ;; (setq doom-theme 'doom-oceanic-next)
 
 (setq doom-localleader-key ",")

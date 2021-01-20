@@ -95,6 +95,13 @@
         :desc "Switch to 9th workspace"   "9"   #'+workspace/switch-to-8
         :desc "Switch to final workspace" "0"   #'+workspace/switch-to-final))
 
+      (:when (featurep! :tools magit)
+        (:prefix-map ("g" . "git")
+         ;; :desc "Magit status"             "s"   #'magit-status
+         :desc "Jump to next hunk"        "n"   #'git-gutter:next-hunk
+         :desc "Jump to previous hunk"    "p"   #'git-gutter:previous-hunk))
+         ;; :desc "Git stage hunk"           "S"   #'git-gutter:stage-hunk))
+
       (:prefix ("a" . "applications")
        :desc "News feeds"           :n  "n" #'elfeed
        :desc "Email"                :n  "m" #'mu4e
@@ -152,3 +159,6 @@
   (setq elfeed-search-title-max-width 120)
   (map! :map elfeed-search-mode-map
         :ne "U" #'elfeed-update))
+
+(after! treemacs
+  (setq treemacs-persist-file (concat doom-private-dir "treemacs-persist")))

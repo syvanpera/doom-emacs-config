@@ -17,3 +17,6 @@
 (use-package! gdscript-mode
   :init
   (require 'gdscript-mode))
+
+(after! rustic
+  (setq lsp-rust-server 'rust-analyzer))

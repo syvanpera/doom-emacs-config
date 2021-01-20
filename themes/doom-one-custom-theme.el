@@ -1,35 +1,35 @@
-;;; doom-custom-theme.el --- inspired by Atom One Dark -*- no-byte-compile: t; -*-
+;;; doom-one-custom-theme.el --- inspired by Atom One Dark -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
-(defgroup doom-custom-theme nil
+(defgroup doom-one-custom-theme nil
   "Options for doom-themes"
   :group 'doom-themes)
 
-(defcustom doom-custom-brighter-modeline nil
+(defcustom doom-one-custom-brighter-modeline nil
   "If non-nil, more vivid colors will be used to style the mode-line."
-  :group 'doom-custom-theme
+  :group 'doom-one-custom-theme
   :type 'boolean)
 
-(defcustom doom-custom-brighter-comments nil
+(defcustom doom-one-custom-brighter-comments nil
   "If non-nil, comments will be highlighted in more vivid colors."
-  :group 'doom-custom-theme
+  :group 'doom-one-custom-theme
   :type 'boolean)
 
-(defcustom doom-custom-comment-bg doom-custom-brighter-comments
+(defcustom doom-one-custom-comment-bg doom-one-custom-brighter-comments
   "If non-nil, comments will have a subtle, darker background. Enhancing their
 legibility."
-  :group 'doom-custom-theme
+  :group 'doom-one-custom-theme
   :type 'boolean)
 
-(defcustom doom-custom-padded-modeline doom-themes-padded-modeline
+(defcustom doom-one-custom-padded-modeline doom-themes-padded-modeline
   "If non-nil, adds a 4px padding to the mode-line. Can be an integer to
 determine the exact padding."
-  :group 'doom-custom-theme
+  :group 'doom-one-custom-theme
   :type '(choice integer boolean))
 
 ;;
-(def-doom-theme doom-custom
+(def-doom-theme doom-one-custom
   "A dark theme inspired by Atom One Dark"
 
   ;; name        default   256       16
@@ -65,8 +65,8 @@ determine the exact padding."
    (vertical-bar   (doom-darken base1 0.1))
    (selection      dark-blue)
    (builtin        magenta)
-   (comments       (if doom-custom-brighter-comments dark-cyan base5))
-   (doc-comments   (doom-lighten (if doom-custom-brighter-comments dark-cyan base5) 0.25))
+   (comments       (if doom-one-custom-brighter-comments dark-cyan base5))
+   (doc-comments   (doom-lighten (if doom-one-custom-brighter-comments dark-cyan base5) 0.25))
    (constants      violet)
    (functions      magenta)
    (keywords       blue)
@@ -86,10 +86,10 @@ determine the exact padding."
 
    ;; custom categories
    (hidden     `(,(car bg) "black" "black"))
-   (-modeline-bright doom-custom-brighter-modeline)
+   (-modeline-bright doom-one-custom-brighter-modeline)
    (-modeline-pad
-    (when doom-custom-padded-modeline
-      (if (integerp doom-custom-padded-modeline) doom-custom-padded-modeline 4)))
+    (when doom-one-custom-padded-modeline
+      (if (integerp doom-one-custom-padded-modeline) doom-one-custom-padded-modeline 4)))
 
    (modeline-fg     fg)
    (modeline-fg-alt base5)
@@ -116,7 +116,7 @@ determine the exact padding."
 
    (font-lock-comment-face
     :foreground comments
-    :background (if doom-custom-comment-bg (doom-lighten bg 0.05)))
+    :background (if doom-one-custom-comment-bg (doom-lighten bg 0.05)))
    (font-lock-doc-face
     :inherit 'font-lock-comment-face
     :foreground doc-comments)
@@ -164,11 +164,16 @@ determine the exact padding."
 
    ;; org-mode
    (org-hide :foreground hidden)
-   (solaire-org-hide-face :foreground hidden))
+   (solaire-org-hide-face :foreground hidden)
+
+   ;; treemacs
+   (treemacs-root-face :foreground green :height 1.0 :weight 'bold)
+   (treemacs-directory-face :foreground blue)
+   )
 
 
   ;; --- extra variables ---------------------
   ()
   )
 
-;;; doom-custom-theme.el ends here
+;;; doom-one-custom-theme.el ends here

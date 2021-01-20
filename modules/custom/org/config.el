@@ -60,8 +60,8 @@
         org-log-done 'time
         org-log-reschedule 'note
 
-        ts/org-capture-workflow-file (concat org-directory "workflow.org")
-        ts/org-capture-readlater-file (concat org-directory "readlater.org")
+        ;; ts/org-capture-workflow-file (concat org-directory "workflow.org")
+        ;; ts/org-capture-readlater-file (concat org-directory "readlater.org")
 
         ;; org-agenda-files (mapcar(lambda (s) (concat org-directory s))
         ;;                         '("inbox.org"
@@ -89,31 +89,31 @@
         ;; org-bullets-bullet-list '("⚙" "✸" "✿" "◉" "○")
         ;; org-superstar-headline-bullets-list '("◉" "○" "✿" "✸")
         org-ellipsis " "
-        org-tag-alist '(;; Context
-                        ("COMPUTER" . ?c)
-                        ("PHONE"    . ?p)
-                        ("EMACS"    . ?e)
-                        ("WORKFLOW" . ?f)
-                        ("WORK"     . ?w)
-                        (:startgroup)
-                        ("@HOME"     . ?h)
-                        ("@SHOPPING" . ?s)
-                        ("@HOUSTON"  . ?o)
-                        ("@CLIENT"   . ?l)
-                        (:endgroup))
+        ;; org-tag-alist '(;; Context
+        ;;                 ("COMPUTER" . ?c)
+        ;;                 ("PHONE"    . ?p)
+        ;;                 ("EMACS"    . ?e)
+        ;;                 ("WORKFLOW" . ?f)
+        ;;                 ("WORK"     . ?w)
+        ;;                 (:startgroup)
+        ;;                 ("@HOME"     . ?h)
+        ;;                 ("@SHOPPING" . ?s)
+        ;;                 ("@HOUSTON"  . ?o)
+        ;;                 ("@CLIENT"   . ?l)
+        ;;                 (:endgroup))
 
-        org-capture-templates '(("t" "Personal todo" entry
-                                 (file+headline +org-capture-todo-file "Inbox")
-                                 "* TODO %?" :prepend t :kill-buffer t)
-                                ("l" "Personal todo with link" entry
-                                 (file+headline +org-capture-todo-file "Inbox")
-                                 "* TODO %?\n%a" :prepend t :kill-buffer t)
-                                ("w" "Workflow todo" entry
-                                 (file+headline ts/org-capture-workflow-file "Inbox")
-                                 "* TODO %?" :prepend t :kill-buffer t)
-                                ("r" "Read later link" item
-                                 (file+headline ts/org-capture-readlater-file "Links")
-                                 "%(ts/clipboard-get)" :kill-buffer t))
+        ;; org-capture-templates '(("t" "Personal todo" entry
+        ;;                          (file+headline +org-capture-todo-file "Inbox")
+        ;;                          "* TODO %?" :prepend t :kill-buffer t)
+        ;;                         ("l" "Personal todo with link" entry
+        ;;                          (file+headline +org-capture-todo-file "Inbox")
+        ;;                          "* TODO %?\n%a" :prepend t :kill-buffer t)
+        ;;                         ("w" "Workflow todo" entry
+        ;;                          (file+headline ts/org-capture-workflow-file "Inbox")
+        ;;                          "* TODO %?" :prepend t :kill-buffer t)
+        ;;                         ("r" "Read later link" item
+        ;;                          (file+headline ts/org-capture-readlater-file "Links")
+        ;;                          "%(ts/clipboard-get)" :kill-buffer t))
         ;; Doom Emacs defaults
         ;; (("t" "Personal todo" entry
         ;;   (file+headline +org-capture-todo-file "Inbox")

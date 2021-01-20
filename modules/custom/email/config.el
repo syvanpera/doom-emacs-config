@@ -27,19 +27,23 @@
 
   (setq mu4e-attachment-dir "~/Downloads"
 
+        mu4e-change-filenames-when-moving t
         mu4e-html2text-command "w3m -dump -T text/html"
         mu4e-sent-messages-behavior 'delete
         mu4e-use-fancy-chars nil
         shr-color-visible-luminance-min 50
-
         mu4e-org-link-query-in-headers-mode nil
+        mu4e-view-show-images t
 
-        ;; mu4e-maildir-shortcuts '(("/gmail/INBOX"               . ?g)
-        ;;                          ("/houston/INBOX"             . ?h))
+        mu4e-maildir-shortcuts '(("/tuomo.syvanpera@gmail.com/INBOX"         . ?g)
+                                 ("/tuomo.syvanpera@houston-inc.com/INBOX"   . ?h))
 
-        mu4e-bookmarks '(("flag:unread" "Unread messages" ?u)
-                         ("date:today..now" "Today's messages" ?t)
-                         ("date:7d..now" "Last 7 days" ?w))
+        mu4e-bookmarks '(("m:/tuomo.syvanpera@gmail.com/INBOX" "Gmail Inbox" ?g)
+                         ("m:/tuomo.syvanpera@houston-inc.com/INBOX" "Houston Inbox" ?h)
+                         ("m:/tuomo.syvanpera@gmail.com/INBOX or m:/tuomo.syvanpera@houston-inc.com/INBOX" "All Inboxes" ?i)
+                         ("flag:unread and not m:tuomo.syvanpera@gmail.com/[Gmail].Trash and not m:tuomo.syvanpera@houston-inc.com/[Gmail].Trash" "Unread messages" ?u)
+                         ("date:today..now and not m:tuomo.syvanpera@gmail.com/[Gmail].Trash and not m:tuomo.syvanpera@houston-inc.com/[Gmail].Trash" "Today's messages" ?t)
+                         ("date:7d..now and not m:tuomo.syvanpera@gmail.com/[Gmail].Trash and not m:tuomo.syvanpera@houston-inc.com/[Gmail].Trash" "Last 7 days" ?w))
 
         ;; allow for updating mail using 'U' in the main view:
         mu4e-get-mail-command "mailsync"
@@ -60,17 +64,8 @@
         `(
           ,(make-mu4e-context
             :name "gmail"
-            :enter-func (lambda () (mu4e-message "Entering Gmail context"))
-            :leave-func (lambda () (mu4e-message "Leaving Gmail context"))
-            ;; :match-func (lambda (msg) (when msg (mu4e-message-contact-field-matches msg :to "tuomo.syvanpera@gmail.com")))
-            ;; :match-func (lambda (msg) (when msg
-            ;;                        (string-prefix-p "/gmail" (mu4e-message-field msg :maildir))))
             :match-func (lambda (msg) (when msg
-                                   (string-match-p "^/gmail" (mu4e-message-field msg :maildir))))
-            ;; :match-func (lambda (msg)
-            ;;               (when msg
-            ;;                 (mu4e-message-maildir-matches msg "^/gmail/")
-            ;;                 (mu4e-message-contact-field-matches msg :to "tuomo.syvanpera@gmail.com")))
+                                   (string-match-p "^/tuomo.syvanpera@gmail.com" (mu4e-message-field msg :maildir))))
             :vars '(
                     (user-mail-address  . "tuomo.syvanpera@gmail.com")
                     (user-full-name     . "Tuomo Syvänperä")
@@ -80,17 +75,8 @@
                     (mu4e-refile-folder . "/tuomo.syvanpera@gmail.com/[Gmail].All Mail")))
           ,(make-mu4e-context
             :name "houston"
-            :enter-func (lambda () (mu4e-message "Entering Houston context"))
-            :leave-func (lambda () (mu4e-message "Leaving Houston context"))
-            ;; :match-func (lambda (msg) (when msg (mu4e-message-contact-field-matches msg :to "tuomo.syvanpera@houston-inc.com")))
-            ;; :match-func (lambda (msg) (when msg
-            ;;                        (string-prefix-p "/houston" (mu4e-message-field msg :maildir))))
             :match-func (lambda (msg) (when msg
-                                   (string-match-p "^/houston" (mu4e-message-field msg :maildir))))
-            ;; :match-func (lambda (msg)
-            ;;               (when msg
-            ;;                 (mu4e-message-maildir-matches msg "^/houston/")
-            ;;                 (mu4e-message-contact-field-matches msg :to "tuomo.syvanpera@houston-inc.com")))
+                                   (string-match-p "^/tuomo.syvanpera@houston-inc.com" (mu4e-message-field msg :maildir))))
             :vars '(
                     (user-mail-address  . "tuomo.syvanpera@houston-inc.com")
                     (user-full-name     . "Tuomo Syvänperä")
