@@ -1,6 +1,5 @@
 ;;; custom/config/config.el -*- lexical-binding: t; -*-
 
-(load! "elisp/protobuf-mode")
 (load! "elisp/tmux")
 
 (load! "+funcs")
@@ -24,6 +23,7 @@
 (define-key! 'override
   "M-s" #'save-buffer
   "M-e" #'+treemacs/toggle
+  ;; "M-e" #'ts/treemacs-toggle
   "M-c" #'clipboard-kill-ring-save
   "M-v" #'clipboard-yank
   "M-a" #'mark-whole-buffer
