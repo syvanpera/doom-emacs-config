@@ -33,7 +33,8 @@ determine the exact padding."
   "A dark theme inspired by Atom One Dark"
 
   ;; name        default   256       16
-  ((bg         '("#0d1117" nil       nil            ))
+  ;; ((bg         '("#0d1117" nil       nil            ))
+  ((bg         '("#282828" nil       nil            ))
    (bg-alt     '("#21242b" nil       nil            ))
    (base0      '("#1B2229" "black"   "black"        ))
    (base1      '("#1c1f24" "#1e1e1e" "brightblack"  ))
@@ -165,6 +166,13 @@ determine the exact padding."
    ;; org-mode
    (org-hide :foreground hidden)
    (solaire-org-hide-face :foreground hidden)
+
+   ;; lsp-mode
+   (lsp-headerline-breadcrumb-separator-face :foreground green)
+
+   ;; rjsx
+   (rjsx-tag :foreground red)
+   (rjsx-attr :foreground orange)
 
    ;; treemacs
    (treemacs-root-face :foreground green :height 1.0 :weight 'bold)

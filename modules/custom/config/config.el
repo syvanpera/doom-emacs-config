@@ -51,12 +51,23 @@
  :map evil-window-map
  :gnvime "o" #'doom/window-maximize-buffer
  :gnvime "z" #'doom/window-enlargen)
+
 (map!
  :map vterm-mode-map
  :i "C-h" #'evil-window-left
  :i "C-j" #'evil-window-down
  :i "C-k" #'evil-window-up
  :i "C-l" #'evil-window-right)
+
+(map!
+ :map eshell-mode-map
+ :i "C-h" #'evil-window-left
+ :i "C-j" #'evil-window-down
+ :i "C-k" #'evil-window-up
+ :i "C-l" #'evil-window-right
+ :i "C-w v" #'evil-window-vsplit
+ :i "C-w s" #'evil-window-split
+ :i "C-w c" #'+workspace/close-window-or-workspace)
 
 (map! :leader
       :desc "Toggle buffers" "TAB" #'evil-switch-to-windows-last-buffer
@@ -102,6 +113,47 @@
          :desc "Jump to previous hunk"    "p"   #'git-gutter:previous-hunk))
          ;; :desc "Git stage hunk"           "S"   #'git-gutter:stage-hunk))
 
+      ;;; <leader> c --- code
+      (:prefix-map ("c" . "code")
+       (:when (and (featurep! :tools lsp) (not (featurep! :tools lsp +eglot)))
+        :desc "LSP Execute code action" "a" #'lsp-execute-code-action
+        :desc "LSP Organize imports" "o" #'lsp-organize-imports
+        (:when (featurep! :completion ivy)
+         :desc "Jump to symbol in current workspace" "j"   #'lsp-ivy-workspace-symbol
+         :desc "Jump to symbol in any workspace"     "J"   #'lsp-ivy-global-workspace-symbol)
+        (:when (featurep! :completion helm)
+         :desc "Jump to symbol in current workspace" "j"   #'helm-lsp-workspace-symbol
+         :desc "Jump to symbol in any workspace"     "J"   #'helm-lsp-global-workspace-symbol)
+        (:when (featurep! :ui treemacs +lsp)
+         :desc "Errors list"                         "X"   #'lsp-treemacs-errors-list
+         :desc "Incoming call hierarchy"             "y"   #'lsp-treemacs-call-hierarchy
+         :desc "Outgoing call hierarchy"             "Y"   (cmd!! #'lsp-treemacs-call-hierarchy t)
+         :desc "References tree"                     "R"   (cmd!! #'lsp-treemacs-references t)
+         :desc "Symbols"                             "S"   #'lsp-treemacs-symbols)
+        :desc "LSP"                                  "l"   #'+default/lsp-command-map
+        :desc "LSP Rename"                           "r"   #'lsp-rename)
+       (:when (featurep! :tools lsp +eglot)
+        :desc "LSP Execute code action" "a" #'eglot-code-actions
+        :desc "LSP Rename" "r" #'eglot-rename
+        :desc "LSP Find declaration" "j" #'eglot-find-declaration)
+       :desc "Compile"                               "c"   #'compile
+       :desc "Recompile"                             "C"   #'recompile
+       :desc "Jump to definition"                    "d"   #'+lookup/definition
+       :desc "Jump to references"                    "D"   #'+lookup/references
+       :desc "Evaluate buffer/region"                "e"   #'+eval/buffer-or-region
+       :desc "Evaluate & replace region"             "E"   #'+eval:replace-region
+       :desc "Format buffer/region"                  "f"   #'+format/region-or-buffer
+       :desc "Show doc"                              "h"   #'lsp-ui-doc-show
+       :desc "Find implementations"                  "i"   #'+lookup/implementations
+       :desc "Jump to documentation"                 "k"   #'+lookup/documentation
+       :desc "Send to repl"                          "s"   #'+eval/send-region-to-repl
+       :desc "Find type definition"                  "t"   #'+lookup/type-definition
+       :desc "Delete trailing whitespace"            "w"   #'delete-trailing-whitespace
+       :desc "Delete trailing newlines"              "W"   #'doom/delete-trailing-newlines
+       :desc "List errors"                           "x"   #'flymake-show-diagnostics-buffer
+       (:when (featurep! :checkers syntax)
+        :desc "List errors"                         "x"   #'flycheck-list-errors))
+
       (:prefix ("a" . "applications")
        :desc "News feeds"           :n  "n" #'elfeed
        :desc "Email"                :n  "m" #'mu4e
@@ -125,7 +177,7 @@
       )
 
 (after! deft
-  (setq deft-directory "~/org/notes"
+  (setq deft-directory "~/org/roam"
         deft-use-filename-as-title t)
   (add-hook! 'deft-mode-hook #'hl-line-mode))
 
@@ -145,9 +197,17 @@
 (after! prodigy
   (prodigy-define-service
     :name "Hugo Personal Blog"
-    :command "/usr/bin/hugo"
+    :command "/usr/local/bin/hugo"
     :args '("server" "-D" "--navigateToChanged")
     :cwd "~/projects/personal/tiniblog"
+    :tags '(personal)
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+  (prodigy-define-service
+    :name "Hugo Personal Wiki"
+    :command "/usr/local/bin/hugo"
+    :args '("server" "-D" "--navigateToChanged")
+    :cwd "~/projects/personal/tiniwiki"
     :tags '(personal)
     :stop-signal 'sigkill
     :kill-process-buffer-on-stop t))

@@ -24,8 +24,8 @@
 
 ;; (setq doom-font (font-spec :family "monospace" :size 23))
 ;; (setq doom-font (font-spec :family "UbuntuMono Nerd Font" :size 23))
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 23))
-(setq doom-variable-pitch-font (font-spec :family "sans" :size 23))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14))
+(setq doom-variable-pitch-font (font-spec :family "sans" :size 14))
 ;; (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 23))
 
 ;; (setq fancy-splash-image (concat doom-private-dir "nebula.png"))
@@ -35,15 +35,27 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-nebula)
-(setq doom-theme 'doom-one-custom)
+;; (setq doom-theme 'doom-one-custom)
+;; (setq doom-theme 'doom-gruvbox)
+;; (setq doom-theme 'doom-gruvbox-custom)
+;; (setq doom-theme 'doom-dracula)
+;; (setq doom-theme 'doom-dracula-custom)
+(setq doom-theme 'doom-palenight-custom)
 ;; (setq doom-theme 'doom-one-custom)
 ;; (setq doom-theme 'doom-oceanic-next)
+
+(setq doom-themes-treemacs-theme "doom-colors")
 
 (setq doom-localleader-key ",")
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
+
+(defvar +org-capture-inbox-file "inbox.org"
+  "Default target for captured todo entries.
+
+Is relative to `org-directory', unless it is absolute.")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -65,3 +77,4 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+

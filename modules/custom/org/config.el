@@ -54,11 +54,110 @@
   (add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
   (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
-  (setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
+  ;; (setq org-agenda-files
+  ;;       (mapcar(lambda (s) (concat org-directory s))
+  ;;              '("inbox.org"
+  ;;                "todo.org"
+  ;;                "projects.org")))
+
+  (setq org-ellipsis " "
+        org-superstar-headline-bullets-list '("⚙" "➤" "◉" "◎" "☉" "○" "●" "✿")
+        ;; org-bullets-bullet-list '("●" "◉" "◎" "☉" "○" "⚙")
+        org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
         org-tags-column -80
         org-agenda-tags-column -140
         org-log-done 'time
-        org-log-reschedule 'note
+        org-log-reschedule 'note)
+
+  (setq org-todo-keywords
+        '((sequence
+           "TODO(t)"
+           ;; "PROJ(p)"
+           "NEXT(n)"
+           "WAIT(w@/!)"
+           "HOLD(h@/!)"
+           "|"
+           "DONE(d)"
+           "CANCELLED(c@/!)"
+           ))
+        org-todo-keyword-faces
+        '(("NEXT" . +org-todo-active)
+          ("CANCELLED" . +org-todo-cancel)))
+
+  (setq org-tag-alist
+        '(("EMACS"    . ?e)
+          ("WORKFLOW" . ?f)
+          ("WORK"     . ?w)
+          (:startgroup)
+          ("@HOME"    . ?h)
+          ("@SHOP"    . ?s)
+          ("@OFFICE"  . ?o)
+          ("@CLIENT"  . ?c)
+          (:endgroup)))
+
+  (setq org-capture-templates
+        '(("t" "Personal todo" entry
+           (file+headline +org-capture-inbox-file "Inbox")
+           "* TODO %?\n%i\n%a" :prepend t)
+          ("n" "Personal notes" entry
+           (file+headline +org-capture-notes-file "Inbox")
+           "* %u %?\n%i\n%a" :prepend t)
+          ("j" "Journal" entry
+           (file+olp+datetree +org-capture-journal-file)
+           "* %U %?\n%i\n%a" :prepend t)
+          ("d" "Distraction" entry
+           (file+headline +org-capture-inbox-file "Distractions")
+           "* %?\n%T")
+
+          ;; Will use {project-root}/{todo,notes,changelog}.org, unless a
+          ;; {todo,notes,changelog}.org file is found in a parent directory.
+          ;; Uses the basename from `+org-capture-todo-file',
+          ;; `+org-capture-changelog-file' and `+org-capture-notes-file'.
+          ("p" "Templates for projects")
+          ("pt" "Project-local todo" entry  ; {project-root}/todo.org
+           (file+headline +org-capture-project-todo-file "Inbox")
+           "* TODO %?\n%i\n%a" :prepend t)
+          ("pn" "Project-local notes" entry  ; {project-root}/notes.org
+           (file+headline +org-capture-project-notes-file "Inbox")
+           "* %U %?\n%i\n%a" :prepend t)
+          ("pc" "Project-local changelog" entry  ; {project-root}/changelog.org
+           (file+headline +org-capture-project-changelog-file "Unreleased")
+           "* %U %?\n%i\n%a" :prepend t)
+
+          ;; Will use {org-directory}/{+org-capture-projects-file} and store
+          ;; these under {ProjectName}/{Tasks,Notes,Changelog} headings. They
+          ;; support `:parents' to specify what headings to put them under, e.g.
+          ;; :parents ("Projects")
+          ("o" "Centralized templates for projects")
+          ("ot" "Project todo" entry
+           (function +org-capture-central-project-todo-file)
+           "* TODO %?\n %i\n %a"
+           :heading "Tasks"
+           :prepend nil)
+          ("on" "Project notes" entry
+           (function +org-capture-central-project-notes-file)
+           "* %U %?\n %i\n %a"
+           :heading "Notes"
+           :prepend t)
+          ("oc" "Project changelog" entry
+           (function +org-capture-central-project-changelog-file)
+           "* %U %?\n %i\n %a"
+           :heading "Changelog"
+           :prepend t)))
+  )
+
+(after! org-roam
+  (setq org-roam-capture-ref-templates
+        '(("r" "ref" plain #'org-roam-capture--get-point "%?" :file-name "${slug}" :head "#+TITLE: ${title}\n#+ROAM_KEY: ${ref}" :unnarrowed t))
+        org-roam-capture-templates
+        '(("d" "default" plain #'org-roam-capture--get-point "%?" :file-name "%<%Y%m%d%H%M%S>-${slug}" :head "#+TITLE: ${title}\n\n" :unnarrowed t))
+        )
+  )
+
+
+
+
+
 
         ;; ts/org-capture-workflow-file (concat org-directory "workflow.org")
         ;; ts/org-capture-readlater-file (concat org-directory "readlater.org")
@@ -88,7 +187,6 @@
         ;; org-log-state-notes-insert-after-drawers nil
         ;; org-bullets-bullet-list '("⚙" "✸" "✿" "◉" "○")
         ;; org-superstar-headline-bullets-list '("◉" "○" "✿" "✸")
-        org-ellipsis " "
         ;; org-tag-alist '(;; Context
         ;;                 ("COMPUTER" . ?c)
         ;;                 ("PHONE"    . ?p)
@@ -139,7 +237,7 @@
         ;; ("on" "Project notes" entry #'+org-capture-central-project-notes-file "* %U %?\n %i\n %a" :heading "Notes" :prepend t)
         ;; ("oc" "Project changelog" entry #'+org-capture-central-project-changelog-file "* %U %?\n %i\n %a" :heading "Changelog" :prepend t))
 
-        ;; ORG-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+        ;; org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
         ;;                     (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))
         ;; DRAFT is for blog posts, used in blog org files
         ;; org-todo-keyword-faces '(("TODO" . (:foreground "#61afef" :underline t))
@@ -214,5 +312,3 @@
         ;;                              ("gw" "Work" tags-todo "WORK")
         ;;                              ("G" "GTD Block Agenda" ((tags-todo "@HOUSTON")
         ;;                                                       (tags-todo "@HOME"))))
-        )
-  )
