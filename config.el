@@ -40,9 +40,11 @@
 ;; (setq doom-theme 'doom-gruvbox-custom)
 ;; (setq doom-theme 'doom-dracula)
 ;; (setq doom-theme 'doom-dracula-custom)
-(setq doom-theme 'doom-palenight-custom)
 ;; (setq doom-theme 'doom-one-custom)
 ;; (setq doom-theme 'doom-oceanic-next)
+;; (setq doom-theme 'doom-palenight-custom)
+;; (setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-palenight-custom)
 
 (setq doom-themes-treemacs-theme "doom-colors")
 
