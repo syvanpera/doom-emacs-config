@@ -1,24 +1,24 @@
-;;; doom-palenight-custom-theme.el --- inspired by Material-PaleNight -*- lexical-binding: t; no-byte-compile: t; -*-
+;;; doom-spaceduck-custom-theme.el --- inspired by Material-PaleNight -*- lexical-binding: t; no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
-(defgroup doom-palenight-custom-theme nil
-  "Options for the `doom-palenight-custom' theme."
+(defgroup doom-spaceduck-custom-theme nil
+  "Options for the `doom-spaceduck-custom' theme."
   :group 'doom-themes)
 
-(defcustom doom-palenight-custom-padded-modeline doom-themes-padded-modeline
+(defcustom doom-spaceduck-custom-padded-modeline doom-themes-padded-modeline
   "If non-nil, adds a 4px padding to the mode-line.
 Can be an integer to determine the exact padding."
-  :group 'doom-palenight-custom-theme
+  :group 'doom-spaceduck-custom-theme
   :type '(choice integer boolean))
 
 ;;
-(def-doom-theme doom-palenight-custom
+(def-doom-theme doom-spaceduck-custom
   "A dark theme inspired by Material-Palenight"
 
   ;; name        default   256       16
   ;; ((bg         '("#181A20" nil       nil))
-  ((bg         '("#161925" nil       nil))
+  ((bg         '("#0f111b" nil       nil))
    (bg-alt     '("#242837" nil       nil))
    (base0      '("#1c1f2b" "black"   "black"))
    (base1      '("#1e212e" "#262626" "brightblack"))
@@ -29,7 +29,7 @@ Can be an integer to determine the exact padding."
    (base6      '("#697098" "#626262" "brightblack"))
    (base7      '("#717CB4" "#767676" "brightblack"))
    (base8      '("#A6Accd" "#a8a8a8" "white"))
-   (fg         '("#f0f5fe" "#e4e4e4" "brightwhite"))
+   (fg         '("#ecf0c1" "#e4e4e4" "brightwhite"))
    (fg-alt     '("#BFC7D5" "#bcbcbc" "white"))
 
    (grey base5)
@@ -77,8 +77,8 @@ Can be an integer to determine the exact padding."
    (modeline-fg-alt comments)
 
    (-modeline-pad
-    (when doom-palenight-custom-padded-modeline
-      (if (integerp doom-palenight-custom-padded-modeline) doom-palenight-custom-padded-modeline 4))))
+    (when doom-spaceduck-custom-padded-modeline
+      (if (integerp doom-spaceduck-custom-padded-modeline) doom-spaceduck-custom-padded-modeline 4))))
 
   ;;;; Base theme face overrides
   ((lazy-highlight :background base4 :foreground fg :weight 'bold)
@@ -130,4 +130,4 @@ Can be an integer to determine the exact padding."
    (rjsx-tag :foreground red)
    (rjsx-attr :foreground yellow :slant 'italic :weight 'medium)))
 
-;;; doom-palenight-custom-theme.el ends here
+;;; doom-spaceduck-custom-theme.el ends here

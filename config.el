@@ -31,6 +31,10 @@
 ;; (setq fancy-splash-image (concat doom-private-dir "nebula.png"))
 (setq fancy-splash-image (concat doom-private-dir "black-hole.png"))
 
+;; Transparent background
+(set-frame-parameter (selected-frame)'alpha '(70 . 70))
+(add-to-list 'default-frame-alist'(alpha . (70 . 70)))
+
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
@@ -42,9 +46,9 @@
 ;; (setq doom-theme 'doom-dracula-custom)
 ;; (setq doom-theme 'doom-one-custom)
 ;; (setq doom-theme 'doom-oceanic-next)
-;; (setq doom-theme 'doom-palenight-custom)
 ;; (setq doom-theme 'doom-nord)
-(setq doom-theme 'doom-palenight-custom)
+;; (setq doom-theme 'doom-palenight-custom)
+(setq doom-theme 'doom-spaceduck-custom)
 
 (setq doom-themes-treemacs-theme "doom-colors")
 
