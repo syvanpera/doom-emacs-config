@@ -31,13 +31,14 @@
        (ivy                ; a search engine for love and life
         +prescient
         +icons)
+       vertico           ; the search engine of the future
 
        :ui
        deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       ;;(emoji +unicode)  ; 🙂
+       (emoji +unicode)  ; 🙂
        ;;fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
@@ -145,8 +146,8 @@
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;gdscript          ; the language you waited for
-       (go +lsp)         ; the hipster dialect
-       (haskell +dante)  ; a language that's lazier than I am
+       (go +lsp)           ; the hipster dialect
+       (haskell +lsp)      ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
        json              ; At least it ain't XML
@@ -191,8 +192,8 @@
        ;;zig               ; C, but simpler
 
        :email
-       (mu4e +gmail)
-       notmuch
+       ;; (mu4e +gmail)
+       ;; notmuch
        ;;(wanderlust +gmail)
 
        :app
@@ -211,7 +212,7 @@
        config
        ui
        org
-       email
+       ;; email
        lang
        app
        )

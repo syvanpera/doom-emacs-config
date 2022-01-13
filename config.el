@@ -25,6 +25,7 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 23))
 ;; (setq doom-font (font-spec :family "UbuntuMono Nerd Font" :size 23))
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14))
+;; (setq doom-font (font-spec :family "Cousine Nerd Font Mono" :size 14))
 (setq doom-variable-pitch-font (font-spec :family "sans" :size 14))
 ;; (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 23))
 
@@ -32,8 +33,8 @@
 (setq fancy-splash-image (concat doom-private-dir "black-hole.png"))
 
 ;; Transparent background
-(set-frame-parameter (selected-frame)'alpha '(70 . 70))
-(add-to-list 'default-frame-alist'(alpha . (70 . 70)))
+(set-frame-parameter (selected-frame)'alpha '(90 . 90))
+(add-to-list 'default-frame-alist'(alpha . (90 . 90)))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the

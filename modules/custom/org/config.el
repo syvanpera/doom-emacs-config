@@ -62,7 +62,7 @@
 
   (setq org-ellipsis " "
         org-superstar-headline-bullets-list '("⚙" "➤" "◉" "◎" "☉" "○" "●" "✿")
-        ;; org-bullets-bullet-list '("●" "◉" "◎" "☉" "○" "⚙")
+        ;; org-bullets-bullet-list '("" "◉" "◎" "" "" "⚙")
         org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
         org-tags-column -80
         org-agenda-tags-column -140

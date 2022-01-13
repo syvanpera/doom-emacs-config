@@ -18,7 +18,8 @@ Can be an integer to determine the exact padding."
 
   ;; name        default   256       16
   ;; ((bg         '("#181A20" nil       nil))
-  ((bg         '("#0f111b" nil       nil))
+  ;; ((bg         '("#0f111b" nil       nil))
+  ((bg         '("#181c24" nil       nil))
    (bg-alt     '("#242837" nil       nil))
    (base0      '("#1c1f2b" "black"   "black"))
    (base1      '("#1e212e" "#262626" "brightblack"))

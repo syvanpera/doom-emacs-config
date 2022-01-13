@@ -154,10 +154,6 @@
        (:when (featurep! :checkers syntax)
         :desc "List errors"                         "x"   #'flycheck-list-errors))
 
-      (:prefix ("a" . "applications")
-       :desc "News feeds"           :n  "n" #'elfeed
-       :desc "Email"                :n  "m" #'mu4e
-       :desc "Prodigy"              :n  "p" #'prodigy)
       (:prefix ("f" . "file")
        (:prefix ("o" . "open")
         :desc "Open org folder"     :n  "o" #'(lambda () (interactive)
